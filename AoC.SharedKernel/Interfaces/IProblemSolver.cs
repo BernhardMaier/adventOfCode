@@ -1,9 +1,10 @@
-﻿using CSharpFunctionalExtensions;
+﻿using AoC.SharedKernel.Contracts;
+using CSharpFunctionalExtensions;
 
 namespace AoC.SharedKernel.Interfaces;
 
 public interface IProblemSolver
 {
-  Result<string> Solve();
-  Task<Result<string>> SolveAsync();
+  PuzzleResult Solve();
+  Task<PuzzleResult> SolveAsync();
 }
