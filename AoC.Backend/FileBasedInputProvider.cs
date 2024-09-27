@@ -34,7 +34,7 @@ public class FileBasedInputProvider : IInputProvider
 
   private static Result<string> GetFilePathFor(PuzzleIdentifier puzzleIdentifier)
   {
-    var fileName = $"{puzzleIdentifier.Year:0000}_{puzzleIdentifier.Day:00}_{puzzleIdentifier.Part:00}.txt";
+    var fileName = $"{puzzleIdentifier.Year:0000}_{puzzleIdentifier.Day:00}.txt";
     var filePath = Path.Combine(Environment.CurrentDirectory, "InputFiles", fileName);
 
     return filePath;
