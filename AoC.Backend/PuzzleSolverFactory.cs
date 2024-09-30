@@ -4,24 +4,24 @@ using AoC.SharedKernel.Interfaces;
 
 namespace AoC.Backend;
 
-public class ProblemSolverFactory(IInputProvider inputProvider)
+public class PuzzleSolverFactory(IInputProvider inputProvider)
 {
-  public IProblemSolver Create(PuzzleIdentifier puzzleIdentifier) =>
+  public IPuzzleSolver Create(PuzzleIdentifier puzzleIdentifier) =>
     Create(puzzleIdentifier.Year, puzzleIdentifier.Day, puzzleIdentifier.Part);
 
-  private IProblemSolver Create(int year, int day, int part)
+  private IPuzzleSolver Create(int year, int day, int part)
   {
     var suffix = $"{year:0000}{day:00}{part:00}";
-    var typeName = $"AoC{year:0000}.ProblemSolvers.ProblemSolverFor{suffix}";
+    var typeName = $"AoC{year:0000}.PuzzleSolvers.PuzzleSolverFor{suffix}";
     var type = GetTypeByName(typeName);
     
     if (type == null)
-      throw new InvalidOperationException($"Problem solver for {suffix} not found.");
+      throw new InvalidOperationException($"Puzzle solver for {suffix} not found.");
     
-    if (!typeof(IProblemSolver).IsAssignableFrom(type))
-      throw new InvalidOperationException($"Problem solver for {suffix} is not assignable to IProblemSolver.");
+    if (!typeof(IPuzzleSolver).IsAssignableFrom(type))
+      throw new InvalidOperationException($"Puzzle solver for {suffix} is not assignable to IPuzzleSolver.");
 
-    return (IProblemSolver)Activator.CreateInstance(type, inputProvider)!;
+    return (IPuzzleSolver)Activator.CreateInstance(type, inputProvider)!;
   }
   
   private static Type? GetTypeByName(string typeName)

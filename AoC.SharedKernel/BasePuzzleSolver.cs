@@ -4,11 +4,11 @@ using CSharpFunctionalExtensions;
 
 namespace AoC.SharedKernel;
 
-public abstract class BaseProblemSolver(IInputProvider inputProvider) : IProblemSolver
+public abstract class BasePuzzleSolver(IInputProvider inputProvider) : IPuzzleSolver
 {
   private PuzzleIdentifier? _puzzleIdentifier;
   private PuzzleIdentifier PuzzleIdentifier => _puzzleIdentifier ??= Result.Success(GetType().Name)
-    .Map(typeName => typeName.Replace("ProblemSolverFor", ""))
+    .Map(typeName => typeName.Replace("PuzzleSolverFor", ""))
     .Map(s => new PuzzleIdentifier(
       int.Parse(s[..4]),
       int.Parse(s.Substring(4, 2)),

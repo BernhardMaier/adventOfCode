@@ -2,7 +2,7 @@
 
 namespace AoC.SharedKernel.Interfaces;
 
-public interface IProblemSolver
+public interface IPuzzleSolver
 {
   PuzzleResult Solve();
   Task<PuzzleResult> SolveAsync();
