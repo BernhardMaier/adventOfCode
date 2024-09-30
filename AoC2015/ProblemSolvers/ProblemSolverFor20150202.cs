@@ -1,5 +1,4 @@
 ﻿using AoC.SharedKernel;
-using AoC.SharedKernel.Contracts;
 using AoC.SharedKernel.Interfaces;
 
 namespace AoC2015.ProblemSolvers;
@@ -8,8 +7,6 @@ namespace AoC2015.ProblemSolvers;
 public class ProblemSolverFor20150202(IInputProvider inputProvider)
   : BaseProblemSolver(inputProvider)
 {
-  protected override PuzzleIdentifier PuzzleIdentifier => new(2015, 2, 2);
-
   protected override string Solve(string input) =>
     input
       .Split("\r\n")

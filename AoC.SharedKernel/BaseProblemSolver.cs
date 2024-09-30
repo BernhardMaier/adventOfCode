@@ -6,8 +6,17 @@ namespace AoC.SharedKernel;
 
 public abstract class BaseProblemSolver(IInputProvider inputProvider) : IProblemSolver
 {
-  protected abstract PuzzleIdentifier PuzzleIdentifier { get; }
-  
+  private PuzzleIdentifier? _puzzleIdentifier;
+  private PuzzleIdentifier PuzzleIdentifier => _puzzleIdentifier ??= Result.Success(GetType().Name)
+    .Map(typeName => typeName.Replace("ProblemSolverFor", ""))
+    .Map(s => new PuzzleIdentifier(
+      int.Parse(s[..4]),
+      int.Parse(s.Substring(4, 2)),
+      int.Parse(s.Substring(6, 2))))
+    .Finally(result => result.IsFailure
+      ? throw new Exception($"Puzzle identifier could not be created: {result}")
+      : result.Value);
+
   public PuzzleResult Solve() =>
     inputProvider.GetInput(PuzzleIdentifier).Map(Solve).Finally(MapToPuzzleResult);
 

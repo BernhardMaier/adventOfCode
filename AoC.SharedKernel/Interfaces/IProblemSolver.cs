@@ -1,5 +1,4 @@
 ﻿using AoC.SharedKernel.Contracts;
-using CSharpFunctionalExtensions;
 
 namespace AoC.SharedKernel.Interfaces;
 
