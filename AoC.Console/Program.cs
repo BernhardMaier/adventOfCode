@@ -1,13 +1,11 @@
-﻿using AoC.Backend.Extensions;
-using AoC.SharedKernel.Contracts;
+﻿using AoC.Backend;
+using AoC.Backend.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-PuzzleIdentifier[] puzzles =
-[
-  new (2015, 1, 1),
-  new (2015, 1, 2),
-  new (2015, 2, 1),
-  new (2015, 2, 2),
-];
-
-puzzles.Solve().PrintWith(Console.WriteLine);
-//Console.ReadLine();
+Host.CreateDefaultBuilder(args)
+  .ConfigureServices((_, services) => services
+    .AddHostedService<Worker>()
+    .AddAdventOfCodeServices())
+  .Build()
+  .Run();

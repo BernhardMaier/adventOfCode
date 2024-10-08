@@ -2,14 +2,14 @@
 using AoC.SharedKernel.Contracts;
 using AoC.SharedKernel.Interfaces;
 
-namespace AoC.Backend;
+namespace AoC.Backend.Services;
 
-public class PuzzleSolverFactory(IInputProvider inputProvider)
+public class PuzzleSolverFactory(IInputProvider inputProvider) : IPuzzleSolverFactory
 {
-  public IPuzzleSolver Create(PuzzleIdentifier puzzleIdentifier) =>
-    Create(puzzleIdentifier.Year, puzzleIdentifier.Day, puzzleIdentifier.Part);
+  public IPuzzleSolver CreatePuzzleSolver(PuzzleIdentifier puzzleIdentifier) =>
+    CreatePuzzleSolver(puzzleIdentifier.Year, puzzleIdentifier.Day, puzzleIdentifier.Part);
 
-  private IPuzzleSolver Create(int year, int day, int part)
+  private IPuzzleSolver CreatePuzzleSolver(int year, int day, int part)
   {
     var suffix = $"{year:0000}{day:00}{part:00}";
     var typeName = $"AoC{year:0000}.PuzzleSolvers.PuzzleSolverFor{suffix}";

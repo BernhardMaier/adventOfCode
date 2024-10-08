@@ -2,7 +2,7 @@
 using AoC.SharedKernel.Interfaces;
 using CSharpFunctionalExtensions;
 
-namespace AoC.Backend;
+namespace AoC.Backend.Services;
 
 public class FileBasedInputProvider : IInputProvider
 {
