@@ -30,7 +30,7 @@ public class PuzzleSolverFactory(IInputProvider inputProvider) : IPuzzleSolverFa
     var loadedPaths = loadedAssemblies.Select(a => a.Location);
     return loadedAssemblies
       .Concat(Directory
-        .GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
+        .GetFiles(AppDomain.CurrentDomain.BaseDirectory, $"{typeName.Split('.').First()}.dll")
         .Where(path => !loadedPaths.Contains(path, StringComparer.InvariantCultureIgnoreCase))
         .Select(path => AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(path))))
       .SelectMany(assembly => assembly.GetTypes())
