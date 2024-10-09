@@ -19,6 +19,8 @@ public class Worker(
       new (2015, 1, 2),
       new (2015, 2, 1),
       new (2015, 2, 2),
+      new (2015, 3, 1),
+      new (2015, 3, 2),
     ];
 
     puzzleSolverFactory.Solve(puzzles).PrintWith(Log);
