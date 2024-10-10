@@ -15,7 +15,7 @@ public class Worker(
   {
     PuzzleIdentifier[] puzzles =
     [
-      new (2015, 4, 2),
+      new (2015, 5, 1),
     ];
 
     puzzleSolverFactory.Solve(puzzles).PrintWith(Log);
