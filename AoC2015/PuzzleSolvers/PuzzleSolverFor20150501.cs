@@ -29,16 +29,10 @@ public static class ExtensionsFor20150501
     s
       .ToCharArray()
       .Aggregate((List: new List<(string, string)>(), Previous: string.Empty), (state, current) =>
-        (state.List.AddValue((state.Previous, current.ToString())), current.ToString()))
+        (state.List.Concat([(state.Previous, current.ToString())]).ToList(), current.ToString()))
       .List
       .Any(pair => pair.Item1 == pair.Item2);
 
   public static bool HasNoForbiddenSubstrings(this string s) =>
     !(s.Contains("ab") || s.Contains("cd") || s.Contains("pq") || s.Contains("xy"));
-
-  public static List<(string, string)> AddValue(this List<(string, string)> list, (string, string) value)
-  {
-    list.Add(value);
-    return list;
-  }
 }

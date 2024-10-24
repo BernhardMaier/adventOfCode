@@ -1,4 +1,5 @@
-﻿using AoC.Backend.Extensions;
+﻿using System.Diagnostics;
+using AoC.Backend.Extensions;
 using AoC.SharedKernel.Contracts;
 using AoC.SharedKernel.Interfaces;
 using Microsoft.Extensions.Hosting;
@@ -15,10 +16,14 @@ public class Worker(
   {
     PuzzleIdentifier[] puzzles =
     [
-      new (2015, 5, 1),
+      new (2015, 5, 2),
     ];
 
+    var stopwatch = new Stopwatch();
+    stopwatch.Start();
     puzzleSolverFactory.Solve(puzzles).PrintWith(Log);
+    stopwatch.Stop();
+    logger.LogInformation("Duration: {Duration}", stopwatch.Elapsed);
     
     return host.StopAsync(stoppingToken);
   }
