@@ -16,6 +16,7 @@ public class Worker(
   {
     PuzzleIdentifier[] puzzles =
     [
+      new (2015, 5, 1),
       new (2015, 5, 2),
     ];
 

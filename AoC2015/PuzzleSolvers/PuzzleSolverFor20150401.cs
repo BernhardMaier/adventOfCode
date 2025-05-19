@@ -13,11 +13,9 @@ public class PuzzleSolverFor20150401(IInputProvider inputProvider)
   {
     var suffix = -1;
     while (++suffix <= 1000000000)
-    {
-      var md5Hash = Convert.ToHexString(MD5.HashData(Encoding.ASCII.GetBytes($"{input}{suffix}")));
-      if (md5Hash.StartsWith("00000"))
+      if (Convert.ToHexString(MD5.HashData(Encoding.ASCII.GetBytes($"{input}{suffix}"))).StartsWith("00000"))
         return suffix.ToString();
-    }
+    
     return "ERROR";
   }
 }
